@@ -1,0 +1,152 @@
+# Video QA Audit: Seedance 2.5 Spatial & Motion Evaluation
+
+**Model Evaluated:** Seedance 2.5 (Video Generation)
+**Objective:** Evaluate camera motion logic, temporal consistency, and physical accuracy for potential integration into a standard VFX compositing pipeline.
+
+## 1. Original Prompt
+
+> **Prompt:** Use the input image as the visual start frame. Image1
+
+Use the reference video ONLY as CAMERA MOTION REFERENCE. Video1
+
+IMPORTANT:
+Reproduce the CAMERA TRAJECTORY, CAMERA SPEED, ACCELERATION, DECELERATION, HEIGHT CHANGE and TIMING of the reference video as closely as possible.
+
+Do not copy the objects, products or environment from the reference video.
+Transfer ONLY its camera motion to the construction scene.
+
+CAMERA MOTION IS THE HIGHEST PRIORITY.
+
+Create one continuous real-time BOLT robotic-arm shot.
+
+CAMERA PATH:
+
+0.0–1.0 sec:
+Begin almost static, holding the initial composition briefly.
+
+1.0–2.0 sec:
+Suddenly accelerate into a fast, precise robotic lateral orbit around the worker and truck wheel.
+
+Keep the impact wrench and wheel hub as the camera target.
+
+During this orbital movement, simultaneously raise the camera significantly.
+
+The movement must create strong real 3D parallax between:
+the truck tire,
+the impact wrench,
+the worker,
+the truck body,
+and the excavator in the background.
+
+2.0–2.7 sec:
+Continue the fast orbital movement while rising toward a clearly elevated perspective.
+
+At the peak of the movement, the camera should briefly reach a noticeably high three-quarter / near-overhead angle looking down toward the impact wrench and wheel.
+
+Do not stop.
+
+2.7–3.4 sec:
+Immediately descend again while continuing the robotic arc around the target.
+
+The move should remain fast, mechanical and highly controlled.
+
+3.4–4.0 sec:
+Smoothly decelerate and settle into a lower three-quarter perspective while still targeting the impact wrench and wheel.
+
+The entire trajectory must feel like a real programmed BOLT Cinebot move:
+fast acceleration,
+strong lateral orbit,
+large vertical rise,
+high-angle pass,
+fast controlled descent,
+and smooth robotic braking.
+
+CAMERA TARGET:
+Keep the interaction between the impact wrench and wheel hub as the visual center / tracking target throughout the move.
+
+The camera moves dramatically around this anchor point.
+
+Do NOT keep the camera static.
+Do NOT replace the orbit with a simple zoom.
+Do NOT replace the movement with a slow push-in.
+Do NOT create only a subtle lateral drift.
+
+The camera must physically TRANSLATE through 3D space and noticeably change perspective.
+
+REAL-TIME:
+No slow motion.
+No time remapping.
+Camera speed changes only.
+The worker remains at natural real-world speed.
+
+PHYSICAL CONTINUITY:
+The worker remains crouched and operating the impact wrench.
+
+The black socket extension remains seated on the same lug nut throughout the entire shot.
+
+The wheel does not rotate.
+The truck does not move.
+
+Maintain the same worker, clothing, impact wrench, truck, tire, wheel and construction environment.
+
+Preserve character and product identity during the camera move, but DO NOT reduce the amplitude of the camera motion in order to preserve the initial composition.
+
+CAMERA MOTION HAS PRIORITY OVER COMPOSITION LOCK.
+
+No morphing.
+No identity change.
+No tool transformation.
+No wheel deformation.
+No duplicated lug nuts.
+No extra fingers.
+No temporal flicker.
+
+High-end industrial commercial cinematography.
+
+
+Strong physical parallax.
+Precise BOLT robotic-arm motion.
+## 2. Generated Output
+
+<img width="300" height="169" alt="CAM_ROBOT2" src="https://github.com/user-attachments/assets/ca8d45e9-40ec-4c57-b866-d937cb266163" />
+
+## 3. VFX Supervisor QA & Technical Audit
+
+**Verdict:** [Approved for Concept / Rejected for Direct Comp / Requires Nuke fixes]
+
+1. Mechanical Interaction & Tool Physics (Critical Fail)
+Lack of Torque & Dynamic Recoil: A high-torque  3/4 impact wrench driving or loosening lug nuts on heavy plant machinery produces aggressive axial vibration, hammer impact stutter, and wrist counter-torque. The tool and the operator’s arms remain unnaturally static, floating against the lug without dynamic mechanical bite.
+
+Socket-to-Nut Registration: As the camera pushes in (00:01–00:03), the socket barrel does not maintain rigid concentric alignment with the nut. Instead of hard-surface rotational friction or lock, the contact point exhibits subtle drifting/sliding across the stud face.
+
+Tool Geometry Warping: The battery pack base and motor housing exhibit micro-morphing across the push. The trigger finger and trigger guard lack defined mechanical clearance.
+
+2. Hard-Surface Coherence & Typography (High Priority)
+Tire Sidewall Text: The raised sidewall branding displays classic generative gibberish typography (pseudo-lettering resembling “...GLOBA OM...”) that subtly changes depth and relief as the camera perspective shifts.
+
+Rim & Stud Symmetry:
+
+The bolt-circle pitch and spacing become irregular along the lower quadrant of the hub.
+
+Several perimeter nuts/studs lose hexagonal definition and melt into rounded, ambiguous metal plugs between 00:02 and 00:04.
+
+The center grease/hub cap perimeter lacks clean circular concentricity with the wheel rim bore.
+
+3. Anatomical & Material Coherence (Medium Priority)
+Support Hand (Left Glove): The left hand stabilizing the front housing of the impact wrench shows geometric swimming. The thumb and index finger blend together around the neck of the tool at 00:02, lacking distinct knuckle articulation and compressive contact with the rubberized tool grip.
+
+Texture Boiling (Temporal Crawl): Dirt and grease spatters on the work pants and hi-vis vest do not remain completely pinned to the underlying fabric folds, exhibiting minor temporal noise (sub-pixel crawling) typical of diffusion temporal layers.
+
+4. Optical & Edge Integration
+Bokeh Falloff & Alpha Bleed: The edge matte separation between the worker's hard hat/vest and the excavator in the out-of-focus background shows soft edge smearing. The depth map appears slightly dilated, pulling pieces of the background blur into the high-frequency edges of the jacket.
+
+Rigid-Body Parallax: While large-scale camera parallax is relatively stable, the wheel face does not hold up as a true rigid 3D plane; the perspective distortion on the rim rim lip breathes slightly during the move.
+
+VFX Supervisor Verdict & Comp Fixability
+Status: REJECTED FOR HERO/FOREGROUND FINAL (Usable only as deep background plate element or under heavy motion blur / brief cutaways < 12 frames).
+
+Comp / 2D Patch Viability:
+
+Low/Cost-Inefficient: Fixing the socket contact, rebuilding the bolt circle, replacing the sidewall typography, and stabilizing the hand deformation would require extensive 3D projection tracking, a CG wheel replacement, and clean-plate hand paintouts.
+
+If this asset must be delivered, recommend tracking and projecting a clean CAD/photogrammetry wheel rim and replacement impact wrench onto the tracked plate, using the live footage primarily for the worker's core body mass.
